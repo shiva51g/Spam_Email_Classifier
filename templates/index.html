@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Classifier</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Custom Header Styles -->
+    <style>
+        .header {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 40px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .form-section {
+            background-color: #f8f9fa;
+            padding: 50px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" href="#">Spam Classifier</a>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <section class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-left">
+                    <h1 class="display-4">Protecting Your Emails</h1>
+                    <p class="lead">Utilizing Advanced Machine Learning Algorithms</p>
+                    <a href="https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset" target="_blank" class="btn btn-secondary btn-lg">Learn More</a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://pronto-core-cdn.prontomarketing.com/2/wp-content/uploads/sites/1315/2016/03/pic_what-are-my-costs-4.jpg" alt="Spam protection">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form text-center py-5">
+        <div class="container form-section">
+            <h2 class="mb-4">Enter your message to check if it's spam</h2>
+            <form method="POST" action="/">
+                <div class="form-group">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Check Message</button>
+            </form>
+
+            <!-- Display Prediction (If backend returns something) -->
+            {% if prediction %}
+            <div class="result-box alert alert-info mt-4">
+                <strong>Result:</strong> {{ prediction }}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
